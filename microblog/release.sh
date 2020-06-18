@@ -4,8 +4,8 @@ set -ex
 USERNAME=polibudde
 IMAGE=microblog
 
-# git pull 
-# git submodule update --init --recursive
+git pull 
+git submodule update --init --recursive
 
 docker run --rm -v "$PWD":/app treeder/bump patch
 
@@ -13,11 +13,11 @@ version=`cat VERSION`
 echo "version: $version"
 ./build.sh
 
-#git add -A
-#git commit -m "version $version"
-#git tag -a "$version" -m "version $version"
-#git push
-#git push --tags
+git add -A
+git commit -m "version $version"
+git tag -a "$version" -m "version $version"
+git push
+git push --tags
 
 docker tag $USERNAME/$IMAGE:latest $USERNAME/$IMAGE:$version
 
