@@ -1,0 +1,19 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+    {% if current_user.id %}
+        {% include "navigation-loggedin.jinja2" %}
+    {% else %}
+        {% include "navigation-default.jinja2" %}
+    {% endif %}
+
+    <div>
+        <h1 class="welcome">Welcome!</h1>
+    </div>
+
+{% endblock %}

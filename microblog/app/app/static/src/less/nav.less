@@ -1,0 +1,53 @@
+@import 'variables.less';
+
+nav {
+    background: wheat;
+    padding: 30px;
+    width: auto;
+    margin-bottom: 40px;
+    box-shadow: 0 0 5px #bec6cf;
+
+    .nav-wrapper {
+      max-width: 900px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: auto;
+      margin: 0 auto;
+
+      .left-nav,
+      .right-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        img {
+          width: 30px;
+          margin-right: 40px;
+        }
+        a {
+          margin-right: 20px;
+          font-weight: bold;
+        }
+        .about {
+          width: 250px;
+          margin-left: 80px;
+          font-weight: normal;
+          color: black;
+        }
+      }
+    }
+
+    a {
+        color: #4d545d;
+        transition: @transition;
+        text-decoration: none;
+        font-weight: bolder;
+
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+            color: red;
+        }
+    }
+}

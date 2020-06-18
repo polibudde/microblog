@@ -1,0 +1,23 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+{% if current_user.id %}
+    {% include "navigation-loggedin.jinja2" %}
+{% else %}
+    {% include "navigation-default.jinja2" %}
+{% endif %}
+
+<div class="container">
+    <h1>{{body}}</h1>
+    <ul class="page-properties">
+      <li><span class="attribute-title">User ID:</span> <span class="attribute-value">{{ current_user.id }}</span></li>
+      <li><span class="attribute-title">User Name:</span> <span class="attribute-value">{{ current_user.name }}</span></li>
+      <li><span class="attribute-title">User Email:</span> <span class="attribute-value">{{ current_user.email }}</span></li>
+    </ul>
+  </div>
+{% endblock %}

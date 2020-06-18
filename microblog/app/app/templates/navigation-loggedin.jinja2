@@ -1,0 +1,13 @@
+<nav class="navigation-loggedin"  style="background-color: #80ffcc">
+  <div class="nav-wrapper">
+    <div class="left-nav">
+      <a href="{{ url_for('main_bp.home') }}">Home</a>
+      <a href="{{ url_for('main_bp.posts') }}">Posts</a>
+      <a href="{{ url_for('main_bp.about') }}" class="about">About {{ current_user.name }}</a>
+    </div>
+    <div class="right-nav">
+      <a href="{{ url_for('auth_bp.logout') }}">LOGOUT</a>
+    </div>
+  </div>
+</nav>
+

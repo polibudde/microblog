@@ -1,0 +1,25 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block content %}
+
+{% if current_user.id %}
+    {% include "navigation-loggedin.jinja2" %}
+{% else %}
+    {% include "navigation-default.jinja2" %}
+{% endif %}
+
+<p class="posts-title">Update Post</p>
+
+<div id="update-form" class="form">
+    <form action="/update/{{post.id}}" method="POST">
+        <textarea maxlength="400" id="textbox" name="content" value="{{post.content}}">{{post.content}}></textarea>
+        <br><br>
+        <input id="textbutt" type="submit" value="Update">
+    </form>
+</div>
+{% endblock %}

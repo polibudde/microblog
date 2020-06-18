@@ -1,0 +1,57 @@
+{% extends "layout.jinja2" %}
+
+{% block pagestyles %}
+  <link href="{{ url_for('static', filename='dist/css/landing.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+
+{% if current_user.id %}
+    {% include "navigation-loggedin.jinja2" %}
+{% else %}
+    {% include "navigation-default.jinja2" %}
+{% endif %}
+
+<p class="posts-title">POSTS</p>
+
+<div id="posts-block">
+    {% if posts|length < 1 %}
+        <h4 style="text-align: center">There are no posts. Create one below!</h4>
+    {% else %}
+        <table>
+            <tr>
+                <th>Date added</th>
+                <th>Owner</th>
+                <th>Title</th>
+                <th>Actions</th>
+            </tr>
+            {% for post in posts %}
+                <tr>
+                    <td id="date-col">{{ post.date_created.date() }} </td>
+                    <td id="date-col">{{ post.author.name }} </td>
+                    <td id="post-col"> <a class="read-title" href="{{ url_for('main_bp.read', id=post['id']) }}"</a>
+                    <hr>{{ post.title }}<hr></a></td>
+                    <td id="action-col">
+                        {% if post.user_id == authuserid %}
+                            <a class="delete-button" href="{{ url_for('main_bp.delete', id=post['id']) }}">DELETE</a>
+                            <a class="update-button" href="{{ url_for('main_bp.update', id=post['id']) }}">UPDATE</a>
+                        {% else %}
+                            <a class="nodelete-button" href="">DELETE</a>
+                            <a class="noupdate-button" href="">UPDATE</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <form id="addform" action="{{ url_for('main_bp.posts') }}" method="POST">
+        <textarea maxlength="100" id="titlebox" name="title" placeholder="Enter post title"></textarea>
+        <br><br>
+        <textarea maxlength="400" id="textbox" name="content" placeholder="Enter post content"></textarea>
+        <br><br>
+        <input id="textbutt" type="submit" value="Add Post">
+    </form>
+</div>
+<br><br><br>
+
+{% endblock %}
